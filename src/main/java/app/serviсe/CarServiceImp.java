@@ -1,6 +1,6 @@
-package web.dao;
+package app.serviсe;
 
-import models.Car;
+import app.model.Car;
 import org.springframework.stereotype.Component;
 
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CarDaoImp implements CarDao {
+public class CarServiceImp implements CarService {
     private List<Car> cars = new ArrayList<>();
 
     {
@@ -21,10 +21,10 @@ public class CarDaoImp implements CarDao {
     }
 
 
-    public CarDaoImp() {
+    public CarServiceImp() {
     }
 
-    public CarDaoImp(List<Car> cars) {
+    public CarServiceImp(List<Car> cars) {
         this.cars = cars;
     }
 
@@ -37,23 +37,14 @@ public class CarDaoImp implements CarDao {
     }
 
     @Override
-    public void add(Car car) {
-        cars.add(car);
-    }
-
-    @Override
     public List<Car> listOfCarsByCount(int count) {
-        if (count > cars.size()) return cars;
+        if (count == 0 || count > cars.size()) return cars;
         return cars.stream().limit(count).collect(Collectors.toList());
-    }
-
-    public List<Car> getCars() {
-        return cars;
     }
 
     @Override
     public String toString() {
-        return "CarDaoImp{" +
+        return "CarServiseImp{" +
                 "cars=" + cars +
                 '}';
     }
